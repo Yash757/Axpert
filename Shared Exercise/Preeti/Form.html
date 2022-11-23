@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Open sans';
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url("https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483__480.jpg");
+    }
+
+    body>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+
+    .wrapper {
+      width: 700px;
+      background: rgb(202, 229, 233);
+      border-radius: 10px;
+      box-shadow: 0 25px 70px rgba(54, 34, 34, 0.05);
+      overflow: hidden;
+      /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    }
+
+    h1.title {
+      padding: 15px 0;
+      margin-left: 25px;
+      font-weight: normal;
+      color: rgb(57, 151, 149);
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .form {
+      width: 700px;
+    }
+
+    .myform {
+      background: #F4F5F7;
+      padding: 25px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 25px
+    }
+
+    .myform label {
+      margin-bottom: 15px;
+      font-family: 'Lucida Sans';
+    }
+
+    .myform input {
+      border: 0;
+      outline: 0;
+      text-transform: capitalize;
+      height: 50px;
+      background: #FFF;
+      width: 100%;
+      border-radius: 5px;
+      color: #6b7078;
+      font-weight: 700;
+      font-size: 1.0rem;
+      text-indent: 15px;
+      border: 2px solid transparent;
+      transition: border 250ms;
+      font-family: 'Lucida Sans';
+      padding: 5%;
+    }
+
+    .full-width {
+      grid-column: -1 / 1
+    }
+
+    .btn {
+      margin-left: 5%;
+      margin-top: auto;
+    }
+
+    .GENDER1 {
+      padding-bottom: 5%;
+      margin-top: 1%;
+      /* text-align: center; */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="form">
+      <center>
+        <h1 class="title">Employee Details</h1>
+      </center>
+      <form action="#" class="myform" id="form">
+        <div class="control-from">
+          <label for="employeeid">Employee Id *</label>
+          <input type="text" class="EMPLOYEEID" id="empid" onchange="myFunction(Emps)" placeholder="" required readonly>
+          <div id="container">
+            <ul id="list"></ul>
+          </div>
+        </div>
+
+        <div class="control-from">
+          <label for="firstname">First Name: *</label>
+          <input class="FIRSTNAME form-select form-select-lg mb-2" type="text" id="fname"
+            placeholder="Enter First Name">
+
+        </div>
+
+        <div class="control-from">
+          <label for="middlename">Middle Name:</label>
+          <input class="form-select form-select-lg mb-2" type="text" id="mname" placeholder="Enter Middle Name">
+
+        </div>
+
+        <div class="control-from">
+          <label for="Lastname">Last Name:</label>
+          <input class="form-select form-select-lg mb-2" type="text" id="lname" placeholder="Enter Last Name">
+
+        </div>
+
+        <div class="control-from">
+          <label for="gender">Gender: *</label>
+          <select class="form-select form-select  GENDER1" id="gender" name="Gender" placeholder="Select Gender">
+          </select>
+        </div>
+
+        <div class="control-from">
+          <label for="dateofbirth">Date Of Birth:</label>
+          <input class="DATEOFBIRTH1 form-select form-select-lg mb-2" type="date" name="date_birth1"
+            placeholder="Enter Date Of Birth" id="dob" max="2006-12-31" min="1970-01-01" Onchange="return findage();"
+            autofocus>
+        </div>
+
+        <div class="control-from">
+          <label for="Age">Age:</label>
+          <input type="number" name="age" id="age" pattern="^\D{0,100}$" class="login-input" placeholder="Age" autofocus
+            readonly>
+        </div>
+        <div class="btn">
+          <button class="btn1 btn-outline-success shadow" id="save" type="submit"
+            onclick="myFunction(list)">Save</button> &nbsp;&nbsp;
+          <button type="button" class="btn2 btn-outline-info shadow" onclick="viewData()">View</button>
+        </div>
+
+
+        <!-- <div class="button">
+              <button class="button" id="save" type="reset">Save</button> &nbsp;&nbsp;
+              <button type="button" class="btn btn-outline-info shadow" onclick="viewData()">View</button>
+            </div> -->
+      </form>
+    </div>
+  </div>
+</body>
+<script src="script2.js"></script>
+
+</html>
